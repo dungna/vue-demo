@@ -21,6 +21,14 @@ jobs:
       - run:
           name: Run test for the application
           command: npm run build
+  deploy:
+    machine:
+      image: ubuntu-2204:2023.07.2
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST -p 3875 "ls"
 workflows:
   build-and-deploy:
     jobs:
